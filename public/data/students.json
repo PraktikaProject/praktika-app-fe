@@ -1,0 +1,409 @@
+{
+  "meta": {
+    "total": 50,
+    "page": 1,
+    "per_page": 50
+  },
+  "data": [
+    {
+      "id": 1,
+      "full_name": "Liam Walker",
+      "myits_id": "502400123456",
+      "department": "Engineering",
+      "major": "Computer Science",
+      "semester": 1
+    },
+    {
+      "id": 2,
+      "full_name": "Sophia Moore",
+      "myits_id": "502400234567",
+      "department": "Business",
+      "major": "Marketing",
+      "semester": 2
+    },
+    {
+      "id": 3,
+      "full_name": "Oliver King",
+      "myits_id": "502400345678",
+      "department": "Engineering",
+      "major": "Electrical Engineering",
+      "semester": 3
+    },
+    {
+      "id": 4,
+      "full_name": "Emma Johnson",
+      "myits_id": "502400456789",
+      "department": "Science",
+      "major": "Biology",
+      "semester": 4
+    },
+    {
+      "id": 5,
+      "full_name": "Noah Lee",
+      "myits_id": "502400567890",
+      "department": "Arts",
+      "major": "Psychology",
+      "semester": 2
+    },
+    {
+      "id": 6,
+      "full_name": "Ava Harris",
+      "myits_id": "502400678901",
+      "department": "Health Sciences",
+      "major": "Nursing",
+      "semester": 1
+    },
+    {
+      "id": 7,
+      "full_name": "Lucas Clark",
+      "myits_id": "502400789012",
+      "department": "Engineering",
+      "major": "Mechanical Engineering",
+      "semester": 3
+    },
+    {
+      "id": 8,
+      "full_name": "Mia White",
+      "myits_id": "502400890123",
+      "department": "Business",
+      "major": "Finance",
+      "semester": 4
+    },
+    {
+      "id": 9,
+      "full_name": "Ethan Lewis",
+      "myits_id": "502400901234",
+      "department": "Engineering",
+      "major": "Software Engineering",
+      "semester": 2
+    },
+    {
+      "id": 10,
+      "full_name": "Charlotte Wright",
+      "myits_id": "502400012345",
+      "department": "Arts",
+      "major": "Graphic Design",
+      "semester": 1
+    },
+    {
+      "id": 11,
+      "full_name": "Amelia Hall",
+      "myits_id": "502400123457",
+      "department": "Education",
+      "major": "Early Childhood Education",
+      "semester": 3
+    },
+    {
+      "id": 12,
+      "full_name": "James Allen",
+      "myits_id": "502400234568",
+      "department": "Business",
+      "major": "Management",
+      "semester": 4
+    },
+    {
+      "id": 13,
+      "full_name": "Benjamin Young",
+      "myits_id": "502400345679",
+      "department": "Science",
+      "major": "Chemistry",
+      "semester": 2
+    },
+    {
+      "id": 14,
+      "full_name": "Isabella Scott",
+      "myits_id": "502400456790",
+      "department": "Health Sciences",
+      "major": "Pharmacy",
+      "semester": 1
+    },
+    {
+      "id": 15,
+      "full_name": "Mason Adams",
+      "myits_id": "502400567891",
+      "department": "Engineering",
+      "major": "Civil Engineering",
+      "semester": 4
+    },
+    {
+      "id": 16,
+      "full_name": "Harper Baker",
+      "myits_id": "502400678902",
+      "department": "Science",
+      "major": "Physics",
+      "semester": 3
+    },
+    {
+      "id": 17,
+      "full_name": "Elijah Nelson",
+      "myits_id": "502400789013",
+      "department": "Engineering",
+      "major": "Computer Science",
+      "semester": 2
+    },
+    {
+      "id": 18,
+      "full_name": "Evelyn Carter",
+      "myits_id": "502400890124",
+      "department": "Arts",
+      "major": "Fine Arts",
+      "semester": 1
+    },
+    {
+      "id": 19,
+      "full_name": "Sebastian Mitchell",
+      "myits_id": "502400901237",
+      "department": "Business",
+      "major": "Economics",
+      "semester": 3
+    },
+    {
+      "id": 20,
+      "full_name": "Lily Perez",
+      "myits_id": "502400012346",
+      "department": "Engineering",
+      "major": "Electrical Engineering",
+      "semester": 4
+    },
+    {
+      "id": 21,
+      "full_name": "Samuel Roberts",
+      "myits_id": "502400123458",
+      "department": "Health Sciences",
+      "major": "Physiotherapy",
+      "semester": 1
+    },
+    {
+      "id": 22,
+      "full_name": "Chloe Evans",
+      "myits_id": "502400234569",
+      "department": "Engineering",
+      "major": "Computer Engineering",
+      "semester": 2
+    },
+    {
+      "id": 23,
+      "full_name": "Jack Turner",
+      "myits_id": "502400345680",
+      "department": "Arts",
+      "major": "Photography",
+      "semester": 4
+    },
+    {
+      "id": 24,
+      "full_name": "Aria Harris",
+      "myits_id": "502400456791",
+      "department": "Health Sciences",
+      "major": "Public Health",
+      "semester": 1
+    },
+    {
+      "id": 25,
+      "full_name": "Maverick Campbell",
+      "myits_id": "502400567892",
+      "department": "Business",
+      "major": "International Business",
+      "semester": 2
+    },
+    {
+      "id": 26,
+      "full_name": "Zoe Anderson",
+      "myits_id": "502400678903",
+      "department": "Engineering",
+      "major": "Environmental Engineering",
+      "semester": 3
+    },
+    {
+      "id": 27,
+      "full_name": "Alexander Collins",
+      "myits_id": "502400789014",
+      "department": "Science",
+      "major": "Mathematics",
+      "semester": 1
+    },
+    {
+      "id": 28,
+      "full_name": "Madeline Gray",
+      "myits_id": "502400890125",
+      "department": "Engineering",
+      "major": "Aerospace Engineering",
+      "semester": 4
+    },
+    {
+      "id": 29,
+      "full_name": "William Gonzalez",
+      "myits_id": "502400901236",
+      "department": "Business",
+      "major": "Marketing",
+      "semester": 2
+    },
+    {
+      "id": 30,
+      "full_name": "Charlotte Hall",
+      "myits_id": "502400012347",
+      "department": "Health Sciences",
+      "major": "Nursing",
+      "semester": 1
+    },
+    {
+      "id": 31,
+      "full_name": "Ella King",
+      "myits_id": "502400123459",
+      "department": "Engineering",
+      "major": "Software Engineering",
+      "semester": 2
+    },
+    {
+      "id": 32,
+      "full_name": "Jack Walker",
+      "myits_id": "502400234570",
+      "department": "Arts",
+      "major": "Music",
+      "semester": 3
+    },
+    {
+      "id": 33,
+      "full_name": "Mia Carter",
+      "myits_id": "502400345681",
+      "department": "Business",
+      "major": "Human Resources",
+      "semester": 1
+    },
+    {
+      "id": 34,
+      "full_name": "Lucas Young",
+      "myits_id": "502400456792",
+      "department": "Health Sciences",
+      "major": "Radiology",
+      "semester": 4
+    },
+    {
+      "id": 35,
+      "full_name": "Avery Perez",
+      "myits_id": "502400567893",
+      "department": "Science",
+      "major": "Pharmacy",
+      "semester": 2
+    },
+    {
+      "id": 36,
+      "full_name": "Mason Cooper",
+      "myits_id": "502400678904",
+      "department": "Business",
+      "major": "Management",
+      "semester": 3
+    },
+    {
+      "id": 37,
+      "full_name": "Emily Lee",
+      "myits_id": "502400789015",
+      "department": "Engineering",
+      "major": "Robotics",
+      "semester": 1
+    },
+    {
+      "id": 38,
+      "full_name": "William Scott",
+      "myits_id": "502400890126",
+      "department": "Arts",
+      "major": "Fashion Design",
+      "semester": 4
+    },
+    {
+      "id": 39,
+      "full_name": "Sophia Clark",
+      "myits_id": "502400901237",
+      "department": "Science",
+      "major": "Physics",
+      "semester": 2
+    },
+    {
+      "id": 40,
+      "full_name": "Liam Evans",
+      "myits_id": "502400012348",
+      "department": "Engineering",
+      "major": "Software Engineering",
+      "semester": 3
+    },
+    {
+      "id": 41,
+      "full_name": "Benjamin Wright",
+      "myits_id": "502400123460",
+      "department": "Health Sciences",
+      "major": "Dentistry",
+      "semester": 4
+    },
+    {
+      "id": 42,
+      "full_name": "Chloe Martin",
+      "myits_id": "502400234571",
+      "department": "Engineering",
+      "major": "Computer Science",
+      "semester": 2
+    },
+    {
+      "id": 43,
+      "full_name": "Lucas White",
+      "myits_id": "502400345682",
+      "department": "Business",
+      "major": "Finance",
+      "semester": 1
+    },
+    {
+      "id": 44,
+      "full_name": "Jackson Walker",
+      "myits_id": "502400456793",
+      "department": "Health Sciences",
+      "major": "Physiotherapy",
+      "semester": 3
+    },
+    {
+      "id": 45,
+      "full_name": "Madeline Lewis",
+      "myits_id": "502400567894",
+      "department": "Engineering",
+      "major": "Chemical Engineering",
+      "semester": 4
+    },
+    {
+      "id": 46,
+      "full_name": "Olivia Mitchell",
+      "myits_id": "502400678905",
+      "department": "Science",
+      "major": "Biology",
+      "semester": 2
+    },
+    {
+      "id": 47,
+      "full_name": "Henry Adams",
+      "myits_id": "502400789016",
+      "department": "Engineering",
+      "major": "Civil Engineering",
+      "semester": 3
+    },
+    {
+      "id": 48,
+      "full_name": "Charlotte Taylor",
+      "myits_id": "502400890127",
+      "department": "Business",
+      "major": "Marketing",
+      "semester": 1
+    },
+    {
+      "id": 49,
+      "full_name": "Liam Collins",
+      "myits_id": "502400901238",
+      "department": "Health Sciences",
+      "major": "Nursing",
+      "semester": 4
+    },
+    {
+      "id": 50,
+      "full_name": "Emma Rodriguez",
+      "myits_id": "502400012349",
+      "department": "Engineering",
+      "major": "Mechanical Engineering",
+      "semester": 3
+    }
+  ]
+}
