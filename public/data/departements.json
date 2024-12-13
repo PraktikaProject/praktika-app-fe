@@ -1,0 +1,34 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "code": "DPT001",
+      "name": "Human Resources"
+    },
+    {
+      "id": 2,
+      "code": "DPT002",
+      "name": "Finance"
+    },
+    {
+      "id": 3,
+      "code": "DPT003",
+      "name": "Marketing"
+    },
+    {
+      "id": 4,
+      "code": "DPT004",
+      "name": "Research and Development"
+    },
+    {
+      "id": 5,
+      "code": "DPT005",
+      "name": "IT Support"
+    },
+    {
+      "id": 6,
+      "code": "DPT006",
+      "name": "Sales"
+    }
+  ]
+}

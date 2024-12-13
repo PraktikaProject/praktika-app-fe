@@ -140,15 +140,13 @@ export const navItems: NavItem[] = [
       {
         title: 'Curicula',
         url: '/dashboard/masterdata/curicula',
-        icon: 'userPen',
         shortcut: ['m', 'm']
+      },
+      {
+        title: 'Departments',
+        shortcut: ['l', 'l'],
+        url: '/dashboard/masterdata/departments'
       }
-      // {
-      //   title: 'Login',
-      //   shortcut: ['l', 'l'],
-      //   url: '/',
-      //   icon: 'login'
-      // }
     ]
   },
   {
