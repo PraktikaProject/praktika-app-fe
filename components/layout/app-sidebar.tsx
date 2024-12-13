@@ -39,7 +39,6 @@ import {
   GalleryVerticalEnd,
   LogOut
 } from 'lucide-react';
-import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import * as React from 'react';
@@ -52,7 +51,6 @@ export const company = {
 };
 
 export default function AppSidebar() {
-  const { data: session } = useSession();
   const pathname = usePathname();
 
   return (
@@ -128,7 +126,7 @@ export default function AppSidebar() {
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter>
+      {/* <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
             <DropdownMenu>
@@ -211,7 +209,7 @@ export default function AppSidebar() {
             </DropdownMenu>
           </SidebarMenuItem>
         </SidebarMenu>
-      </SidebarFooter>
+      </SidebarFooter> */}
       <SidebarRail />
     </Sidebar>
   );

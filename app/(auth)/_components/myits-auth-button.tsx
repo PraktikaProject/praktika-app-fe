@@ -1,20 +1,22 @@
 'use client';
-
+import axios from 'axios';
+import Cookies from 'js-cookie';
 import { useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import axios from 'axios';
+import { redirect } from 'next/navigation';
 
 export default function MyITSSignInButton() {
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(false);
   const [credentials, setCredentials] = useState(null);
   const BASE_URI = process.env.NEXT_PUBLIC_BACKEND_URL;
+  const APP_URI = process.env.NEXT_PUBLIC_APP_URL;
 
   useEffect(() => {
     const fetchCredentials = async () => {
       try {
-        const response = await axios.get(`${BASE_URI}/auth/oauths`, {
+        const response = await axios.get(`${BASE_URI}/openid`, {
           headers: {
             'Content-Type': 'application/json'
           }
@@ -33,17 +35,21 @@ export default function MyITSSignInButton() {
       console.log('Code:', code);
       if (code) {
         setLoading(true);
-        const urlParams = new URLSearchParams();
-        urlParams.append('code', code);
-
-        await axios.post(`${BASE_URI}/auth/oauths/token`, {
-          code
-        });
+        try {
+          const response = await axios.post(`${BASE_URI}/openid/token`, {
+            code
+          });
+          const { data } = response.data;
+          Cookies.set('auth_token', data.token, { expires: 1 });
+          redirect('/dashboard/overview');
+        } catch (error) {
+          console.error('Error fetching token:', error);
+        }
         setLoading(false);
       }
     };
     fetchToken();
-  }, []);
+  }, [searchParams]);
 
   const signIn = async () => {
     if (!credentials) {
@@ -51,13 +57,11 @@ export default function MyITSSignInButton() {
       return;
     }
     const { client_id, redirect_uri, state, nonce } = credentials;
-
-    const url = `http://my.its.ac.id.localhost/en/signin?client_id=${encodeURIComponent(
+    const url = `${APP_URI}/id/signin?clientId=${encodeURIComponent(
       client_id
-    )}&response_type=code&scope=openid&redirect_uri=${encodeURIComponent(
+    )}&responseType=code&scope=openid&redirectUri=${encodeURIComponent(
       redirect_uri
     )}&nonce=${encodeURIComponent(nonce)}&state=${encodeURIComponent(state)}`;
-
     window.location.href = url;
   };
 
