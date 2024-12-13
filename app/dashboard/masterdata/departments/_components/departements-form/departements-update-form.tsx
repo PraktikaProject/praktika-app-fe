@@ -19,6 +19,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { toast } from 'sonner';
+import axios from 'axios';
 
 const DepartementsFormSchema = z.object({
   name: z.string().min(1, { message: 'name is required' }),
@@ -36,7 +37,6 @@ const DepartementsUpdateForm: React.FC<DepartementsUpdateFormProps> = ({
   modalClose,
   data
 }) => {
-  //   const { toast } = useToast();
   const form = useForm<DepartementsFormSchemaType>({
     resolver: zodResolver(DepartementsFormSchema),
     defaultValues: {
@@ -45,8 +45,15 @@ const DepartementsUpdateForm: React.FC<DepartementsUpdateFormProps> = ({
     }
   });
 
+  const BASE_URI = process.env.NEXT_PUBLIC_BACKEND_URL;
   const onSubmit = async (values: DepartementsFormSchemaType) => {
-    toast.success('Departements updated successfully');
+    try {
+      await axios.patch(`${BASE_URI}/bases/departements/${data.id}`, values);
+      toast.success('Departements udpdated successfully');
+      modalClose();
+    } catch (e) {
+      console.log(e);
+    }
     modalClose();
   };
 

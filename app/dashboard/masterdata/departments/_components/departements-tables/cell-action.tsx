@@ -5,6 +5,8 @@ import { useState } from 'react';
 import DepartementsUpdateForm from '../departements-form/departements-update-form';
 import { Modal } from '@/components/ui/modal';
 import { DepartementsData } from '@/types/base';
+import axios from 'axios';
+import { toast } from 'sonner';
 
 interface CellActionProps {
   data: DepartementsData;
@@ -13,8 +15,16 @@ export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   const [loading] = useState(false);
   const [open, setOpen] = useState(false);
   const [openUpdate, setOpenUpdate] = useState(false);
-  const onConfirm = async () => {};
-
+  const BASE_URI = process.env.NEXT_PUBLIC_BACKEND_URL;
+  const onConfirm = async () => {
+    try {
+      await axios.delete(`${BASE_URI}/bases/departements/${data.id}`);
+      toast.success('Departements deleted successfully');
+    } catch (e) {
+      console.log(e);
+    }
+    setOpen(false);
+  };
   return (
     <div className="ml-auto max-w-sm  text-center">
       <AlertModal

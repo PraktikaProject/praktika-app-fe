@@ -20,6 +20,7 @@ import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import axios from 'axios';
 
 const DepartementsFormSchema = z.object({
   name: z.string().min(1, { message: 'name is required' }),
@@ -34,7 +35,9 @@ const DepartementsCreateForm = ({ modalClose }: { modalClose: () => void }) => {
     defaultValues: {}
   });
 
+  const BASE_URI = process.env.NEXT_PUBLIC_BACKEND_URL;
   const onSubmit = async (values: DepartementsFormSchemaType) => {
+    await axios.post(`${BASE_URI}/bases/departements`, values);
     toast.success('Departements created successfully');
     modalClose();
   };

@@ -8,10 +8,9 @@ import DepartementsTableActions from './departements-tables/departements-table-a
 
 type TDepartementsListingPage = {};
 
+const BASE_URI = process.env.NEXT_PUBLIC_BACKEND_URL;
 export default async function DepartementsListingPage({}: TDepartementsListingPage) {
-  const departements = await axios.get(
-    'http://localhost:3002/data/departements.json'
-  );
+  const departements = await axios.get(`${BASE_URI}/bases/departements`);
   const departementsData: DepartementsData[] = departements.data.data;
   const totalData = departementsData.length;
 
