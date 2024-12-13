@@ -8,8 +8,10 @@ import CuriculaTableActions from './curicula-tables/curicula-table-action';
 
 type TCuriculaListingPage = {};
 
+const BASE_URI = process.env.NEXT_PUBLIC_BACKEND_URL;
+
 export default async function CuriculaListingPage({}: TCuriculaListingPage) {
-  const curicula = await axios.get('http://localhost:3002/data/curicula.json');
+  const curicula = await axios.get(`${BASE_URI}/bases/curricula`);
   const curiculaData: CuriculaData[] = curicula.data.data;
   const totalData = curiculaData.length;
 

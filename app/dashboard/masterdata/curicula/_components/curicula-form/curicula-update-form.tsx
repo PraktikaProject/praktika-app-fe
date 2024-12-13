@@ -19,6 +19,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { toast } from 'sonner';
+import axios from 'axios';
+import { CuriculaData } from '@/types/base';
 
 const CuriculaFormSchema = z.object({
   year: z.number().min(4, { message: 'year is required' })
@@ -28,14 +30,13 @@ type CuriculaFormSchemaType = z.infer<typeof CuriculaFormSchema>;
 
 interface CuriculaUpdateFormProps {
   modalClose: () => void;
-  data: any;
+  data: CuriculaData;
 }
 
 const CuriculaUpdateForm: React.FC<CuriculaUpdateFormProps> = ({
   modalClose,
   data
 }) => {
-  //   const { toast } = useToast();
   const form = useForm<CuriculaFormSchemaType>({
     resolver: zodResolver(CuriculaFormSchema),
     defaultValues: {
@@ -43,8 +44,15 @@ const CuriculaUpdateForm: React.FC<CuriculaUpdateFormProps> = ({
     }
   });
 
+  const BASE_URI = process.env.NEXT_PUBLIC_BACKEND_URL;
   const onSubmit = async (values: CuriculaFormSchemaType) => {
-    toast.success('Curicula updated successfully');
+    try {
+      await axios.patch(`${BASE_URI}/bases/curricula/${data.id}`, values);
+      toast.success('Curicula udpdated successfully');
+      modalClose();
+    } catch (e) {
+      console.log(e);
+    }
     modalClose();
   };
 
@@ -63,8 +71,12 @@ const CuriculaUpdateForm: React.FC<CuriculaUpdateFormProps> = ({
               <FormItem>
                 <FormControl>
                   <Input
+                    type="number"
                     placeholder="Enter Curicula name"
                     {...field}
+                    onChange={(e) => {
+                      form.setValue('year', parseInt(e.target.value, 10));
+                    }}
                     className=" px-4 py-2 shadow-inner drop-shadow-xl"
                   />
                 </FormControl>
