@@ -146,6 +146,11 @@ export const navItems: NavItem[] = [
         title: 'Departments',
         shortcut: ['l', 'l'],
         url: '/dashboard/masterdata/departments'
+      },
+      {
+        title: 'Majors',
+        shortcut: ['l', 'l'],
+        url: '/dashboard/masterdata/majors'
       }
     ]
   },

@@ -8,3 +8,9 @@ export type DepartementsData = {
   code: string;
   name: string;
 };
+
+export type MajorsData = {
+  id: number;
+  name: string;
+  departements: string;
+};
