@@ -135,52 +135,85 @@ export const navItems: NavItem[] = [
     url: '/dashboard/students',
     icon: 'userPen',
     isActive: false,
-    shortcut: ['u', 'u'],
+    shortcut: ['s', 's'],
     items: []
   },
   {
-    title: 'Employee',
-    url: '/dashboard/employee',
+    title: 'Lecturers',
+    url: '/dashboard/lecturers',
     icon: 'user',
-    shortcut: ['e', 'e'],
+    shortcut: ['l', 'l'],
     isActive: false,
     items: [] // No child items
   },
   {
-    title: 'Product',
-    url: '/dashboard/product',
-    icon: 'product',
-    shortcut: ['p', 'p'],
+    title: 'Admins',
+    url: '/dashboard/admins',
+    icon: 'user',
+    shortcut: ['l', 'l'],
     isActive: false,
     items: [] // No child items
   },
   {
-    title: 'Account',
-    url: '#', // Placeholder as there is no direct link for the parent
-    icon: 'billing',
-    isActive: true,
-
-    items: [
-      {
-        title: 'Profile',
-        url: '/dashboard/profile',
-        icon: 'userPen',
-        shortcut: ['m', 'm']
-      },
-      {
-        title: 'Login',
-        shortcut: ['l', 'l'],
-        url: '/',
-        icon: 'login'
-      }
-    ]
+    title: 'Courses',
+    url: '/dashboard/courses',
+    icon: 'user',
+    shortcut: ['l', 'l'],
+    isActive: false,
+    items: [] // No child items
   },
   {
-    title: 'Kanban',
-    url: '/dashboard/kanban',
-    icon: 'kanban',
-    shortcut: ['k', 'k'],
+    title: 'Practicums',
+    url: '/dashboard/practicums',
+    icon: 'user',
+    shortcut: ['l', 'l'],
     isActive: false,
     items: [] // No child items
   }
+
+  // {
+  //   title: 'Employee',
+  //   url: '/dashboard/employee',
+  //   icon: 'user',
+  //   shortcut: ['e', 'e'],
+  //   isActive: false,
+  //   items: [] // No child items
+  // },
+  // {
+  //   title: 'Product',
+  //   url: '/dashboard/product',
+  //   icon: 'product',
+  //   shortcut: ['p', 'p'],
+  //   isActive: false,
+  //   items: [] // No child items
+  // },
+  // {
+  //   title: 'Account',
+  //   url: '#', // Placeholder as there is no direct link for the parent
+  //   icon: 'billing',
+  //   isActive: true,
+
+  //   items: [
+  //     {
+  //       title: 'Profile',
+  //       url: '/dashboard/profile',
+  //       icon: 'userPen',
+  //       shortcut: ['m', 'm']
+  //     },
+  //     {
+  //       title: 'Login',
+  //       shortcut: ['l', 'l'],
+  //       url: '/',
+  //       icon: 'login'
+  //     }
+  //   ]
+  // },
+  // {
+  //   title: 'Kanban',
+  //   url: '/dashboard/kanban',
+  //   icon: 'kanban',
+  //   shortcut: ['k', 'k'],
+  //   isActive: false,
+  //   items: [] // No child items
+  // }
 ];

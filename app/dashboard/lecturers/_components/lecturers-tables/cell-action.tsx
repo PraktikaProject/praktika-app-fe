@@ -1,6 +1,6 @@
 import { AlertModal } from '@/components/modal/alert-modal';
 import { Button } from '@/components/ui/button';
-import type { UserData } from '@/types/user';
+import type { StudentData } from '@/types/students';
 import { Edit, Trash } from 'lucide-react';
 import { useState } from 'react';
 import { Modal } from '@/components/ui/modal';

@@ -25,12 +25,13 @@ export const columns: ColumnDef<UserData>[] = [
     enableHiding: false
   },
   {
+    accessorKey: 'myits_id',
+    header: 'NIDN'
+  },
+
+  {
     accessorKey: 'full_name',
     header: 'NAME'
-  },
-  {
-    accessorKey: 'myits_id',
-    header: 'NRP'
   },
   {
     accessorKey: 'department',
@@ -39,10 +40,6 @@ export const columns: ColumnDef<UserData>[] = [
   {
     accessorKey: 'major',
     header: 'MAJOR'
-  },
-  {
-    accessorKey: 'semester',
-    header: 'SEMESTER'
   },
   {
     id: 'actions',

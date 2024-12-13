@@ -6,7 +6,7 @@ import { searchParamsCache } from '@/lib/searchparams';
 import { cn } from '@/lib/utils';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
-import StudentsTable from './students-tables';
+import LecturersTable from './lecturers-tables';
 import axios from 'axios';
 import { UserData } from '@/types/user';
 
@@ -39,8 +39,8 @@ export default async function StudentsListingPage({}: TStudentsListingPage) {
       <div className="space-y-4">
         <div className="flex items-start justify-between">
           <Heading
-            title={`Students (${totalUsers})`}
-            description="List of all students in Praktika APP"
+            title={`Lecturers (${totalUsers})`}
+            description="List of all lecturers in Praktika APP"
           />
 
           <Link
@@ -51,7 +51,7 @@ export default async function StudentsListingPage({}: TStudentsListingPage) {
           </Link>
         </div>
         <Separator />
-        <StudentsTable data={studentData} totalData={totalUsers} />
+        <LecturersTable data={studentData} totalData={totalUsers} />
       </div>
     </PageContainer>
   );

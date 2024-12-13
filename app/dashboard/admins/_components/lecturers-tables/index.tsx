@@ -5,13 +5,13 @@ import { DataTableFilterBox } from '@/components/ui/table/data-table-filter-box'
 import { DataTableResetFilter } from '@/components/ui/table/data-table-reset-filter';
 import { DataTableSearch } from '@/components/ui/table/data-table-search';
 import { UserData } from '@/types/user';
-import { columns } from '../students-tables/columns';
+import { columns } from '../lecturers-tables/columns';
 import {
   GENDER_OPTIONS,
   useEmployeeTableFilters
-} from './use-student-table-filters';
+} from './use-lecturers-table-filters';
 
-export default function StudentsTable({
+export default function LecturersTable({
   data,
   totalData
 }: {
