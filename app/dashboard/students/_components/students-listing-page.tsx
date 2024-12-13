@@ -30,7 +30,7 @@ export default async function StudentsListingPage({}: TStudentsListingPage) {
   // const totalUsers = data.total_users;
   // const employee: Employee[] = data.users;
 
-  const students = await axios.get('http://localhost:3000/data/students.json');
+  const students = await axios.get('http://localhost:3002/data/students.json');
   const studentData: UserData[] = students.data.data;
   const totalUsers = studentData.length;
 

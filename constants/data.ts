@@ -128,7 +128,28 @@ export const navItems: NavItem[] = [
     icon: 'dashboard',
     isActive: false,
     shortcut: ['d', 'd'],
-    items: [] // Empty array as there are no child items for Dashboard
+    items: []
+  },
+  {
+    title: 'Master Data',
+    url: '#',
+    icon: 'drive',
+    isActive: true,
+
+    items: [
+      {
+        title: 'Curicula',
+        url: '/dashboard/masterdata/curicula',
+        icon: 'userPen',
+        shortcut: ['m', 'm']
+      }
+      // {
+      //   title: 'Login',
+      //   shortcut: ['l', 'l'],
+      //   url: '/',
+      //   icon: 'login'
+      // }
+    ]
   },
   {
     title: 'Students',
@@ -186,28 +207,8 @@ export const navItems: NavItem[] = [
   //   shortcut: ['p', 'p'],
   //   isActive: false,
   //   items: [] // No child items
-  // },
-  // {
-  //   title: 'Account',
-  //   url: '#', // Placeholder as there is no direct link for the parent
-  //   icon: 'billing',
-  //   isActive: true,
+  // },,
 
-  //   items: [
-  //     {
-  //       title: 'Profile',
-  //       url: '/dashboard/profile',
-  //       icon: 'userPen',
-  //       shortcut: ['m', 'm']
-  //     },
-  //     {
-  //       title: 'Login',
-  //       shortcut: ['l', 'l'],
-  //       url: '/',
-  //       icon: 'login'
-  //     }
-  //   ]
-  // },
   // {
   //   title: 'Kanban',
   //   url: '/dashboard/kanban',
