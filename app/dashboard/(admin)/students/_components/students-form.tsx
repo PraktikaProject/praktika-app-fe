@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { Button } from '@/components/ui/button';
+import { DepartementsData, MajorsData } from '@/types/base';
 import {
   Form,
   FormControl,
@@ -20,25 +21,18 @@ import {
   SelectTrigger,
   SelectValue
 } from '@/components/ui/select';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
+import axios from 'axios';
+import { toast } from 'sonner';
 
 const formSchema = z.object({
-  name: z.string().min(2, {
-    message: 'Name must be at least 2 characters.'
+  name: z.string().min(8, {
+    message: 'Name must be at least 8 characters.'
   }),
-  country: z.string({
-    required_error: 'Please select a country.'
-  }),
-  email: z.string().email({
-    message: 'Please enter a valid email address.'
-  }),
-  company: z.string().min(1, {
-    message: 'Company name is required.'
-  }),
-  gender: z.enum(['male', 'female', 'other'], {
-    required_error: 'Please select a gender.'
-  })
+  nim: z.string().min(5, { message: 'NIM must be at least 5 characters.' }),
+  departmentId: z.number().min(1, { message: 'Please select a department.' }),
+  majorId: z.number().min(1, { message: 'Please select a major.' }),
+  semester: z.number().min(1, { message: 'Please select a semester.' })
 });
 
 export default function StudentsForm() {
@@ -46,22 +40,68 @@ export default function StudentsForm() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: '',
-      country: '',
-      email: '',
-      company: '',
-      gender: undefined
+      nim: '',
+      departmentId: 0,
+      majorId: 0,
+      semester: 1
     }
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-  }
+  const [departments, setDepartments] = React.useState<DepartementsData[]>([]);
+  const [majors, setMajors] = React.useState<MajorsData[]>([]);
+  const [loadingMajors, setLoadingMajors] = React.useState(false);
+  const BASE_URI = process.env.NEXT_PUBLIC_BACKEND_URL;
+
+  React.useEffect(() => {
+    const fetchDepartments = async () => {
+      try {
+        const response = await axios.get(`${BASE_URI}/bases/departements`);
+        setDepartments(response.data.data);
+      } catch (error) {
+        toast.error('Failed to load departments.');
+      }
+    };
+    fetchDepartments();
+  }, []);
+
+  const handleDepartmentChange = async (departmentId: string) => {
+    const id = parseInt(departmentId, 10);
+    if (id > 0) {
+      setLoadingMajors(true);
+      try {
+        const response = await axios.get(
+          `${BASE_URI}/bases/majors?departmentId=${id}`
+        );
+        setMajors(response.data.data);
+      } catch (error) {
+        toast.error('Failed to load majors.');
+      }
+      setLoadingMajors(false);
+    } else {
+      setMajors([]);
+    }
+  };
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    try {
+      await axios.post(`${BASE_URI}/users/students`, {
+        name: values.name,
+        nim: values.nim,
+        majorId: values.majorId,
+        semester: values.semester
+      });
+      toast.success('Student updated successfully');
+    } catch (error) {
+      console.error(error);
+      toast.error('Failed to update student.');
+    }
+  };
 
   return (
     <Card className="mx-auto w-full">
       <CardHeader>
         <CardTitle className="text-left text-2xl font-bold">
-          Employee Information
+          Student Information
         </CardTitle>
       </CardHeader>
       <CardContent>
@@ -83,25 +123,42 @@ export default function StudentsForm() {
               />
               <FormField
                 control={form.control}
-                name="country"
+                name="nim"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Country</FormLabel>
-                    <Select onValueChange={field.onChange} value={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select a country" />
-                        </SelectTrigger>
-                      </FormControl>
+                    <FormLabel>NIM</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Enter your NIM" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="departmentId"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Department</FormLabel>
+                    <Select
+                      onValueChange={(value) => {
+                        field.onChange(Number(value));
+                        handleDepartmentChange(value);
+                      }}
+                      value={String(field.value)}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a department" />
+                      </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="usa">USA</SelectItem>
-                        <SelectItem value="uk">UK</SelectItem>
-                        <SelectItem value="canada">Canada</SelectItem>
-                        <SelectItem value="australia">Australia</SelectItem>
-                        <SelectItem value="germany">Germany</SelectItem>
-                        <SelectItem value="france">France</SelectItem>
-                        <SelectItem value="japan">Japan</SelectItem>
-                        <SelectItem value="brazil">Brazil</SelectItem>
+                        {departments.map((department) => (
+                          <SelectItem
+                            key={department.id}
+                            value={String(department.id)}
+                          >
+                            {department.name}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -110,71 +167,56 @@ export default function StudentsForm() {
               />
               <FormField
                 control={form.control}
-                name="email"
+                name="majorId"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="email"
-                        placeholder="Enter your email"
-                        {...field}
-                      />
-                    </FormControl>
+                    <FormLabel>Major</FormLabel>
+                    <Select
+                      onValueChange={(value) => field.onChange(Number(value))}
+                      value={String(field.value)}
+                      disabled={loadingMajors}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select a major" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {majors.map((major) => (
+                          <SelectItem key={major.id} value={String(major.id)}>
+                            {major.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
                     <FormMessage />
                   </FormItem>
                 )}
               />
               <FormField
                 control={form.control}
-                name="company"
+                name="semester"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Company</FormLabel>
+                    <FormLabel>semester</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter your company" {...field} />
+                      <Input
+                        type="number"
+                        min={1}
+                        max={14}
+                        placeholder="Enter your semester"
+                        {...field}
+                        onChange={(e) => {
+                          form.setValue(
+                            'semester',
+                            parseInt(e.target.value, 10)
+                          );
+                        }}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
             </div>
-            <FormField
-              control={form.control}
-              name="gender"
-              render={({ field }) => (
-                <FormItem className="space-y-3">
-                  <FormLabel>Gender</FormLabel>
-                  <FormControl>
-                    <RadioGroup
-                      onValueChange={field.onChange}
-                      value={field.value}
-                      className="flex space-x-4"
-                    >
-                      <FormItem className="flex items-center space-x-2">
-                        <FormControl>
-                          <RadioGroupItem value="male" />
-                        </FormControl>
-                        <FormLabel className="font-normal">Male</FormLabel>
-                      </FormItem>
-                      <FormItem className="flex items-center space-x-2">
-                        <FormControl>
-                          <RadioGroupItem value="female" />
-                        </FormControl>
-                        <FormLabel className="font-normal">Female</FormLabel>
-                      </FormItem>
-                      <FormItem className="flex items-center space-x-2">
-                        <FormControl>
-                          <RadioGroupItem value="other" />
-                        </FormControl>
-                        <FormLabel className="font-normal">Other</FormLabel>
-                      </FormItem>
-                    </RadioGroup>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
             <Button type="submit">Submit</Button>
           </form>
         </Form>

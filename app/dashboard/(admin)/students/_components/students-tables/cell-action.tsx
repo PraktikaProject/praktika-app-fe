@@ -1,16 +1,30 @@
 import { AlertModal } from '@/components/modal/alert-modal';
 import { Button } from '@/components/ui/button';
-import type { UserData } from '@/types/user';
+import type { StudentsData } from '@/types/user';
 import { Edit, Trash } from 'lucide-react';
 import { useState } from 'react';
-import { Modal } from '@/components/ui/modal';
+import { toast } from 'sonner';
+import axios from 'axios';
+import Link from 'next/link';
 
-export const CellAction: React.FC = () => {
+interface CellActionProps {
+  data: StudentsData;
+}
+
+export const CellAction: React.FC<CellActionProps> = ({ data }) => {
   const [loading] = useState(false);
   const [open, setOpen] = useState(false);
-  const [openUpdate, setOpenUpdate] = useState(false);
+  const BASE_URI = process.env.NEXT_PUBLIC_BACKEND_URL;
 
-  const onConfirm = async () => {};
+  const onConfirm = async () => {
+    try {
+      await axios.delete(`${BASE_URI}/users/students/${data.id}`);
+      toast.success('Student deleted successfully');
+    } catch (e) {
+      console.log(e);
+    }
+    setOpen(false);
+  };
 
   return (
     <>
@@ -20,13 +34,11 @@ export const CellAction: React.FC = () => {
         onConfirm={onConfirm}
         loading={loading}
       />
-      <Button
-        variant="outline"
-        className="mr-3 px-2 pl-2"
-        onClick={() => setOpenUpdate(true)}
-      >
-        <Edit className="h-4 w-4" />
-      </Button>
+      <Link href={`/dashboard/students/${data.id}`}>
+        <Button variant="outline" className="mr-3 px-2 pl-2">
+          <Edit className="h-4 w-4" />
+        </Button>
+      </Link>
       <Button
         variant="destructive"
         className="px-2 py-2"

@@ -6,3 +6,10 @@ export type UserData = {
   major: string;
   semester: number | null;
 };
+
+export type StudentsData = {
+  id: number;
+  name: string;
+  nim: string;
+  majorId: number;
+};

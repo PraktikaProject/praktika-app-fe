@@ -8,7 +8,7 @@ import { Plus } from 'lucide-react';
 import Link from 'next/link';
 import StudentsTable from './students-tables';
 import axios from 'axios';
-import { UserData } from '@/types/user';
+import { StudentsData } from '@/types/user';
 
 type TStudentsListingPage = {};
 
@@ -32,7 +32,7 @@ export default async function StudentsListingPage({}: TStudentsListingPage) {
   const students = await axios.get(
     `${BASE_URI}/users/students?${new URLSearchParams(filters).toString()}`
   );
-  const studentData: UserData[] = students.data.data;
+  const studentData: StudentsData[] = students.data.data;
   const totalUsers = studentData.length;
 
   return (
@@ -45,7 +45,7 @@ export default async function StudentsListingPage({}: TStudentsListingPage) {
           />
 
           <Link
-            href={'/dashboard/employee/new'}
+            href={'/dashboard//new'}
             className={cn(buttonVariants({ variant: 'default' }))}
           >
             <Plus className="mr-2 h-4 w-4" /> Add New

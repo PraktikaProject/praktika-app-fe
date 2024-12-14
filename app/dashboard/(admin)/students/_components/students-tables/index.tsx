@@ -4,7 +4,7 @@ import { DataTable } from '@/components/ui/table/data-table';
 import { DataTableFilterBox } from '@/components/ui/table/data-table-filter-box';
 import { DataTableResetFilter } from '@/components/ui/table/data-table-reset-filter';
 import { DataTableSearch } from '@/components/ui/table/data-table-search';
-import { UserData } from '@/types/user';
+import { StudentsData } from '@/types/user';
 import { columns } from '../students-tables/columns';
 import { useEmployeeTableFilters } from './use-student-table-filters';
 
@@ -12,7 +12,7 @@ export default function StudentsTable({
   data,
   totalData
 }: {
-  data: UserData[];
+  data: StudentsData[];
   totalData: number;
 }) {
   const {
