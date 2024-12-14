@@ -13,3 +13,10 @@ export type StudentsData = {
   nim: string;
   majorId: number;
 };
+
+export type LecturersData = {
+  id: number;
+  nip: number;
+  name: string;
+  nmajorId: number;
+};
