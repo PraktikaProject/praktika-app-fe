@@ -4,6 +4,11 @@ export const metadata = {
   title: 'Dashboard : Employee View'
 };
 
-export default function Page() {
-  return <StudentsViewPage />;
+export default async function Page({
+  params
+}: {
+  params: Promise<{ studentId: string }>;
+}) {
+  const { studentId } = await params;
+  return <StudentsViewPage data={Number(studentId)} />;
 }

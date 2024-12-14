@@ -35,7 +35,11 @@ const formSchema = z.object({
   semester: z.number().min(1, { message: 'Please select a semester.' })
 });
 
-export default function StudentsForm() {
+type StudentsFormProps = {
+  data: number;
+};
+
+export default function StudentsForm({ data }: StudentsFormProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -62,7 +66,27 @@ export default function StudentsForm() {
       }
     };
     fetchDepartments();
-  }, []);
+
+    const fetchStudentData = async () => {
+      if (data) {
+        try {
+          const response = await axios.get(
+            `${BASE_URI}/users/students/${data}`
+          );
+          // Populate form with fetched student data, if necessary
+          const student = response.data.data;
+          form.setValue('name', student.name);
+          form.setValue('nim', student.nim);
+          form.setValue('departmentId', student.departmentId);
+          form.setValue('majorId', student.majorId);
+          form.setValue('semester', student.semester);
+        } catch (error) {
+          toast.error('Failed to load student data.');
+        }
+      }
+    };
+    fetchStudentData();
+  }, [data]);
 
   const handleDepartmentChange = async (departmentId: string) => {
     const id = parseInt(departmentId, 10);
