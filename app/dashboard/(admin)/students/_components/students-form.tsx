@@ -66,27 +66,7 @@ export default function StudentsForm({ data }: StudentsFormProps) {
       }
     };
     fetchDepartments();
-
-    const fetchStudentData = async () => {
-      if (data) {
-        try {
-          const response = await axios.get(
-            `${BASE_URI}/users/students/${data}`
-          );
-          // Populate form with fetched student data, if necessary
-          const student = response.data.data;
-          form.setValue('name', student.name);
-          form.setValue('nim', student.nim);
-          form.setValue('departmentId', student.departmentId);
-          form.setValue('majorId', student.majorId);
-          form.setValue('semester', student.semester);
-        } catch (error) {
-          toast.error('Failed to load student data.');
-        }
-      }
-    };
-    fetchStudentData();
-  }, [data]);
+  }, []);
 
   const handleDepartmentChange = async (departmentId: string) => {
     const id = parseInt(departmentId, 10);
@@ -94,7 +74,7 @@ export default function StudentsForm({ data }: StudentsFormProps) {
       setLoadingMajors(true);
       try {
         const response = await axios.get(
-          `${BASE_URI}/bases/majors?departmentId=${id}`
+          `${BASE_URI}/bases/majors/department/${id}`
         );
         setMajors(response.data.data);
       } catch (error) {
