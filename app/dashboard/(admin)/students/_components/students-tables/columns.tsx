@@ -25,11 +25,11 @@ export const columns: ColumnDef<UserData>[] = [
     enableHiding: false
   },
   {
-    accessorKey: 'full_name',
+    accessorKey: 'name',
     header: 'NAME'
   },
   {
-    accessorKey: 'myits_id',
+    accessorKey: 'nim',
     header: 'NRP'
   },
   {

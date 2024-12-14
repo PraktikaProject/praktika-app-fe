@@ -2,18 +2,17 @@ import PageContainer from '@/components/layout/page-container';
 import { buttonVariants } from '@/components/ui/button';
 import { Heading } from '@/components/ui/heading';
 import { Separator } from '@/components/ui/separator';
-import { Employee } from '@/constants/data';
-import { fakeUsers } from '@/constants/mock-api';
 import { searchParamsCache } from '@/lib/searchparams';
 import { cn } from '@/lib/utils';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
-import EmployeeTable from './employee-tables';
+import StudentsTable from './students-tables';
+import axios from 'axios';
+import { UserData } from '@/types/user';
 
-type TEmployeeListingPage = {};
+type TStudentsListingPage = {};
 
-export default async function EmployeeListingPage({}: TEmployeeListingPage) {
-  // Showcasing the use of search params cache in nested RSCs
+export default async function StudentsListingPage({}: TStudentsListingPage) {
   const page = searchParamsCache.get('page');
   const search = searchParamsCache.get('q');
   const gender = searchParamsCache.get('gender');
@@ -26,18 +25,19 @@ export default async function EmployeeListingPage({}: TEmployeeListingPage) {
     ...(gender && { genders: gender })
   };
 
-  // mock api call
-  const data = await fakeUsers.getUsers(filters);
-  const totalUsers = data.total_users;
-  const employee: Employee[] = data.users;
+  const BASE_URI = process.env.NEXT_PUBLIC_BACKEND_URL;
+
+  const students = await axios.get(`${BASE_URI}/users/students`);
+  const studentData: UserData[] = students.data.data;
+  const totalUsers = studentData.length;
 
   return (
     <PageContainer scrollable>
       <div className="space-y-4">
         <div className="flex items-start justify-between">
           <Heading
-            title={`Employee (${totalUsers})`}
-            description="Manage employees (Server side table functionalities.)"
+            title={`Students (${totalUsers})`}
+            description="List of all students in Praktika APP"
           />
 
           <Link
@@ -48,7 +48,7 @@ export default async function EmployeeListingPage({}: TEmployeeListingPage) {
           </Link>
         </div>
         <Separator />
-        <EmployeeTable data={employee} totalData={totalUsers} />
+        <StudentsTable data={studentData} totalData={totalUsers} />
       </div>
     </PageContainer>
   );
