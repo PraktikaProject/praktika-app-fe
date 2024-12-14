@@ -15,19 +15,23 @@ type TStudentsListingPage = {};
 export default async function StudentsListingPage({}: TStudentsListingPage) {
   const page = searchParamsCache.get('page');
   const search = searchParamsCache.get('q');
-  const gender = searchParamsCache.get('gender');
+  const departement = searchParamsCache.get('department');
   const pageLimit = searchParamsCache.get('limit');
 
   const filters = {
-    page,
-    limit: pageLimit,
+    page: page?.toString(),
+    limit: pageLimit?.toString(),
     ...(search && { search }),
-    ...(gender && { genders: gender })
+    ...(departement && { departements: departement })
   };
+
+  console.log(filters);
 
   const BASE_URI = process.env.NEXT_PUBLIC_BACKEND_URL;
 
-  const students = await axios.get(`${BASE_URI}/users/students`);
+  const students = await axios.get(
+    `${BASE_URI}/users/students?${new URLSearchParams(filters).toString()}`
+  );
   const studentData: UserData[] = students.data.data;
   const totalUsers = studentData.length;
 

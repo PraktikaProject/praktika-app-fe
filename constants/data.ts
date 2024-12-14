@@ -155,36 +155,28 @@ export const navItems: NavItem[] = [
     ]
   },
   {
-    title: 'Students',
-    url: '/dashboard/students',
-    icon: 'userPen',
+    title: 'Users',
+    url: '#',
+    icon: 'user',
     isActive: false,
     shortcut: ['s', 's'],
-    items: []
-  },
-  {
-    title: 'Lecturers',
-    url: '/dashboard/lecturers',
-    icon: 'user',
-    shortcut: ['l', 'l'],
-    isActive: false,
-    items: [] // No child items
-  },
-  {
-    title: 'Admins',
-    url: '/dashboard/admins',
-    icon: 'user',
-    shortcut: ['l', 'l'],
-    isActive: false,
-    items: [] // No child items
-  },
-  {
-    title: 'Courses',
-    url: '/dashboard/courses',
-    icon: 'user',
-    shortcut: ['l', 'l'],
-    isActive: false,
-    items: [] // No child items
+    items: [
+      {
+        title: 'Students',
+        url: '/dashboard/students',
+        shortcut: ['s', 's']
+      },
+      {
+        title: 'Lecturers',
+        url: '/dashboard/lecturers',
+        shortcut: ['l', 'l']
+      },
+      {
+        title: 'Admins',
+        url: '/dashboard/admins',
+        shortcut: ['l', 'l']
+      }
+    ]
   },
   {
     title: 'Practicums',
@@ -192,32 +184,6 @@ export const navItems: NavItem[] = [
     icon: 'user',
     shortcut: ['l', 'l'],
     isActive: false,
-    items: [] // No child items
+    items: []
   }
-
-  // {
-  //   title: 'Employee',
-  //   url: '/dashboard/employee',
-  //   icon: 'user',
-  //   shortcut: ['e', 'e'],
-  //   isActive: false,
-  //   items: [] // No child items
-  // },
-  // {
-  //   title: 'Product',
-  //   url: '/dashboard/product',
-  //   icon: 'product',
-  //   shortcut: ['p', 'p'],
-  //   isActive: false,
-  //   items: [] // No child items
-  // },,
-
-  // {
-  //   title: 'Kanban',
-  //   url: '/dashboard/kanban',
-  //   icon: 'kanban',
-  //   shortcut: ['k', 'k'],
-  //   isActive: false,
-  //   items: [] // No child items
-  // }
 ];

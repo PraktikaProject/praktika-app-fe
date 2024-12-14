@@ -10,8 +10,11 @@ export const searchParams = {
   limit: parseAsInteger.withDefault(10),
   q: parseAsString,
   gender: parseAsString,
-  categories: parseAsString
+  categories: parseAsString,
+  department: parseAsString,
+  semester: parseAsString.withDefault('')
 };
 
 export const searchParamsCache = createSearchParamsCache(searchParams);
+
 export const serialize = createSerializer(searchParams);

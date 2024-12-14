@@ -6,10 +6,7 @@ import { DataTableResetFilter } from '@/components/ui/table/data-table-reset-fil
 import { DataTableSearch } from '@/components/ui/table/data-table-search';
 import { UserData } from '@/types/user';
 import { columns } from '../students-tables/columns';
-import {
-  GENDER_OPTIONS,
-  useEmployeeTableFilters
-} from './use-student-table-filters';
+import { useEmployeeTableFilters } from './use-student-table-filters';
 
 export default function StudentsTable({
   data,
@@ -19,13 +16,14 @@ export default function StudentsTable({
   totalData: number;
 }) {
   const {
-    genderFilter,
-    setGenderFilter,
+    departmentFilter,
+    setDepartmentFilter,
     isAnyFilterActive,
     resetFilters,
     searchQuery,
     setPage,
-    setSearchQuery
+    setSearchQuery,
+    departments
   } = useEmployeeTableFilters();
 
   return (
@@ -38,11 +36,11 @@ export default function StudentsTable({
           setPage={setPage}
         />
         <DataTableFilterBox
-          filterKey="gender"
-          title="Gender"
-          options={GENDER_OPTIONS}
-          setFilterValue={setGenderFilter}
-          filterValue={genderFilter}
+          filterKey="department"
+          title="DEPARTMENT"
+          options={departments}
+          setFilterValue={setDepartmentFilter}
+          filterValue={departmentFilter}
         />
         <DataTableResetFilter
           isFilterActive={isAnyFilterActive}

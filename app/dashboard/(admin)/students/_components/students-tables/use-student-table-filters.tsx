@@ -2,12 +2,9 @@
 
 import { searchParams } from '@/lib/searchparams';
 import { useQueryState } from 'nuqs';
-import { useCallback, useMemo } from 'react';
-
-export const GENDER_OPTIONS = [
-  { value: 'male', label: 'Male' },
-  { value: 'female', label: 'Female' }
-];
+import { useCallback, useMemo, useEffect, useState } from 'react';
+import axios from 'axios';
+import { DepartementsData } from '@/types/base';
 
 export function useEmployeeTableFilters() {
   const [searchQuery, setSearchQuery] = useQueryState(
@@ -17,9 +14,9 @@ export function useEmployeeTableFilters() {
       .withDefault('')
   );
 
-  const [genderFilter, setGenderFilter] = useQueryState(
-    'gender',
-    searchParams.gender.withOptions({ shallow: false }).withDefault('')
+  const [departmentFilter, setDepartmentFilter] = useQueryState(
+    'department',
+    searchParams.department.withOptions({ shallow: false }).withDefault('')
   );
 
   const [page, setPage] = useQueryState(
@@ -27,25 +24,51 @@ export function useEmployeeTableFilters() {
     searchParams.page.withDefault(1)
   );
 
+  const [departments, setDepartments] = useState<
+    { value: string; label: string }[]
+  >([]);
+
+  const BASE_URI = process.env.NEXT_PUBLIC_BACKEND_URL;
+
+  useEffect(() => {
+    async function fetchDepartments() {
+      try {
+        const response = await axios.get(`${BASE_URI}/bases/departements`);
+        const departementsData: DepartementsData[] = response.data.data;
+
+        const departmentOptions = departementsData.map((department) => ({
+          value: String(department.id),
+          label: department.name
+        }));
+
+        setDepartments(departmentOptions);
+      } catch (error) {
+        console.error('Failed to fetch departments:', error);
+      }
+    }
+
+    fetchDepartments();
+  }, [BASE_URI]);
+
   const resetFilters = useCallback(() => {
     setSearchQuery(null);
-    setGenderFilter(null);
-
+    setDepartmentFilter(null);
     setPage(1);
-  }, [setSearchQuery, setGenderFilter, setPage]);
+  }, [setSearchQuery, setDepartmentFilter, setPage]);
 
   const isAnyFilterActive = useMemo(() => {
-    return !!searchQuery || !!genderFilter;
-  }, [searchQuery, genderFilter]);
+    return !!searchQuery || !!departmentFilter;
+  }, [searchQuery, departmentFilter]);
 
   return {
     searchQuery,
     setSearchQuery,
-    genderFilter,
-    setGenderFilter,
+    departmentFilter,
+    setDepartmentFilter,
     page,
     setPage,
     resetFilters,
-    isAnyFilterActive
+    isAnyFilterActive,
+    departments
   };
 }
